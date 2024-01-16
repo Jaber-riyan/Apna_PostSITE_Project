@@ -11,7 +11,6 @@ class UserRegistrationForm(UserCreationForm):
     email = forms.CharField(widget=forms.EmailInput(attrs={'id' : 'required'}))
     phone_number = forms.CharField(max_length=12)
     location = forms.CharField(max_length=200)
-    user_image = forms.ImageField()
     
     class Meta:
         model = User
