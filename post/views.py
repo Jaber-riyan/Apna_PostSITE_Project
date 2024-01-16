@@ -176,7 +176,7 @@ def edit_comment(request,id,post_id):
     # print(user.username)
     post_cl = PostModel.objects.get(id=post_id)
     # print(post_cl.caption)
-    if Comment.objects.filter(name=user.username,email=user.email).exists():
+    if Comment.objects.filter(id=id,name=user.username,email=user.email).exists():
         comment = Comment.objects.get(id=id,name=user.username,email=user.email)
         # print(comment.body)
         # return redirect('homepage')
@@ -207,7 +207,7 @@ def delete_comment(request,id,post_id):
     print(user.username)
     post_cl = PostModel.objects.get(id=post_id)
     print(post_cl.caption)
-    if Comment.objects.filter(name=user.username,email=user.email).exists():
+    if Comment.objects.filter(id=id,name=user.username,email=user.email).exists():
         comment = Comment.objects.get(id=id,name=user.username,email=user.email)
         comment.delete()
         messages.success(request,'Comment Deleted Successfully')
