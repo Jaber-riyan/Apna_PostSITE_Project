@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="main">
+	<!-- Posts -->
+	<p class="fw-bold fs-3">All Post 📖 <br>
+    Total Found Post : {{posts | length}}</p>
+		<section class="posts">
+			
+			{% for post in posts %}
+			
+			<article>
+				<header>
+					<span class="date">{{post.created_on}}</span>
+					<h2><a href="#">Caption : {{post.caption}}</a></h2>
+				</header>
+				<a href="#" class="image fit"><img src="{{post.post_image.url}}" alt="" /></a>
+				<p>user id : {{post.user.id}} post id : {{post.id}}</p>
+				<h5 class="border border-2 border-primary"><a class="text-decoration-none btn btn-primary" href="{% url 'like' post.id post.user.id %}">👍 Like</a> {{post.post_like}}_____<a class="btn btn-danger" href="{% url "dislike" post.id post.user.id %}">👎 Dislike</a> {{post.post_dislike}}</h5>
+				<p>{{ post.body|truncatewords:10 }}</p>
+				<ul class="actions special">
+					<li><a href="{% url "detailview" post.id %}" class="button">Post Detail</a></li>
+				</ul>
+			</article>
+
+			{% endfor %}
+		</section>
+		
+</div>
+
+{% endblock content %}

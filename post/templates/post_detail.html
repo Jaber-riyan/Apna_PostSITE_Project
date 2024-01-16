@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %} 
+{%block content %}
+
+<div id="main">
+  <!-- Posts -->
+  <article class="post featured">
+    <header class="major">
+      <span class="date">{{object.created_on}}</span>
+      <h2><a href="#">{{object.caption}}</a></h2>
+      <img width="500px" src="{{object.post_image.url}}" alt="" />
+      <h5>
+        <a class="text-decoration-none btn btn-primary" href="#">👍 Like</a>
+        {{object.post_like}}_____<a class="btn btn-danger" href="#"
+          >👎 Dislike</a
+        >
+        {{object.post_dislike}}
+      </h5>
+      <p>{{object.body}}</p>
+    </header>
+  </article>
+
+  {% if user.is_authenticated %}
+
+  <div class="card m-2">
+    <h6 class="fw-bold m-2">Total Comments : {{comments | length}}</h6>
+    {% for comment in comments%}
+    <div class="card-body border m-3">
+      <b>{{comment.name}}</b>
+      <small>, {{comment.created_on}}</small>
+      <p>....{{comment.body}}</p>
+      <button class="btn btn-primary text-white">
+        <a class="text-decoration-none text-white fw-bold" href="{% url "editcomment" comment.id object.id %}">Edit</a>
+      </button>
+      <button class="btn btn-danger text-white">
+        <a class="text-decoration-none text-white fw-bold" href="{% url "deletecomment" comment.id object.id %}">Delete</a>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="m-2 card">
+    <form method="post" class="m-3">
+      <h3>Add Comment :</h3>
+      <h5 class="bg-danger text-white p-1">Please Be sure to use the email and username with which you created the account</h5>
+      {% csrf_token %} {{comment_form | crispy}}
+      <button class="btn btn-success text-white">Comment</button>
+    </form>
+  </div>
+
+  {% else %}
+  <h1>
+    You are not Valid User on this platform. For that you can not
+    comment on this post!!!
+  </h1>
+  {% endif %}
+</div>
+  
+{% endblock content %}
