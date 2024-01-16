@@ -40,7 +40,6 @@
   <div class="m-2 card">
     <form method="post" class="m-3">
       <h3>Add Comment :</h3>
-      <h5 class="bg-danger text-white p-1">Please Be sure to use the email and username with which you created the account</h5>
       {% csrf_token %} {{comment_form | crispy}}
       <button class="btn btn-success text-white">Comment</button>
     </form>

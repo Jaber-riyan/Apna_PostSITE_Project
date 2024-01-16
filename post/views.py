@@ -130,6 +130,9 @@ class DetailViewOfPost(DetailView):
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
+            comment_form.instance.name = request.user.username
+            comment_form.instance.email = request.user.email
+            messages.success(request,'Comment created Successfully')
             new_comment.save()
         return self.get(request, *args, **kwargs)
 
@@ -170,12 +173,12 @@ def delete_post(request,id):
 
 def edit_comment(request,id,post_id):
     user = request.user
-    print(user.username)
+    # print(user.username)
     post_cl = PostModel.objects.get(id=post_id)
-    print(post_cl.caption)
+    # print(post_cl.caption)
     if Comment.objects.filter(name=user.username,email=user.email).exists():
         comment = Comment.objects.get(id=id,name=user.username,email=user.email)
-        print(comment.body)
+        # print(comment.body)
         # return redirect('homepage')
         # comment = Comment.objects.get(pk=id)
         form = CommentForm(instance=comment)
