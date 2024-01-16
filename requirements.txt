@@ -14,7 +14,7 @@ humanize
 Markdown
 numpy
 opencv-contrib-python
-# Pillow
+Pillow
 pipenv
 platformdirs
 psycopg2
