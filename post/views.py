@@ -40,6 +40,34 @@ def likeview(request,id,user_id):
         )
         noObject.save()
         return redirect('homepage')
+
+    
+    post_cl = PostModel.objects.get(id=id)
+    login_user = User.objects.get(id=request.user.id)
+    if LikeDislikeModel.objects.filter(post=post_cl,user=login_user).exists():
+        
+        
+        isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
+        
+        if isExist.like_permi == True:
+            messages.info(request,'You Already Like this post')
+            return redirect('detailview',pk=post_cl.id)
+        
+        else: 
+            messages.info(request,'You Already Dislike this post')
+            return redirect('detailview',pk=post_cl.id)
+    
+    
+        
+    else:
+        noObject = LikeDislikeModel.objects.create(
+            user = login_user,
+            post = post_cl,
+            like = 1,
+            like_permi = True
+        )
+        noObject.save()
+        return redirect('detailview',pk=post_cl.id)
         
 
 

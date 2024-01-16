@@ -10,14 +10,12 @@
       <h2><a href="#">{{object.caption}}</a></h2>
       <img width="500px" src="{{object.post_image.url}}" alt="" />
       <h5>
-        <a class="text-decoration-none btn btn-primary" href="#">👍 Like</a>
-        {{object.post_like}}_____<a class="btn btn-danger" href="#"
-          >👎 Dislike</a
-        >
-        {{object.post_dislike}}
+        <br><h5 class="text-decoration-none btn btn-primary">👍 Like</h5>
+        <b>{{object.post_like}}</b>_____<h5 class="text-decoration-none btn btn-danger">👎 Dislike</h5>
+        <b>{{object.post_dislike}}</b>
       </h5><br>
       <h5>Description : </h5>
-      <p>{{object.body}}</p>
+      <p class="fs-5">{{object.body}}</p>
     </header>
   </article>
 

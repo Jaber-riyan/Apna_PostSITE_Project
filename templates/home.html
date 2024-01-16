@@ -17,12 +17,13 @@
 					<h2><a href="#">Caption : {{post.caption}}</a></h2>
 				</header>
 				<a href="#" class="image fit"><img src="{{post.post_image.url}}" alt="" /></a>
-				<p class="text-dark fw-bold fs-5 bg-primary-subtle p-3">Post Author : {{post.user.first_name}} {{post.user.last_name}}</p>
-				<h5 class="border border-2 border-primary"><a class="text-decoration-none btn btn-primary" href="{% url 'like' post.id post.user.id %}">👍 Like</a> {{post.post_like}}_____<a class="btn btn-danger" href="{% url "dislike" post.id post.user.id %}">👎 Dislike</a> {{post.post_dislike}}</h5>
-				<p>{{ post.body|truncatewords:10 }}</p>
-				<ul class="actions special">
+				<p class="text-dark fw-bold fs-5 bg-primary-subtle p-3">Post Author : {{post.user.username}}</p>
+				<h5 class="border border-2 border-primary"><a class="text-decoration-none btn btn-primary" href="{% url 'like' post.id post.user.id %}">👍 Like</a> {{post.post_like}}_____<a class="btn btn-danger" href="{% url "dislike" post.id post.user.id %}">👎 Dislike</a> {{post.post_dislike}}</h5><br>
+				<h5>Description : </h5>
+				<p class="fs-5">{{ post.body|truncatewords:10 }} <a class="text-decoration-none text-dark" href="{% url "detailview" post.id %}"><b>see more...</b></a></p>
+				{% comment %} <ul class="actions special">
 					<li><a href="{% url "detailview" post.id %}" class="button">Post Detail</a></li>
-				</ul>
+				</ul> {% endcomment %}
 			</article>
 
 			{% endfor %}
