@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-2qx4elck*gde37*iak&5@e#f!saj*66ggfdz(*nj8wg(csybm7
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://apna-postsite.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
