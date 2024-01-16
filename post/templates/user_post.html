@@ -17,9 +17,9 @@
 					<h2><a href="#">Caption : {{post.caption}}</a></h2>
 				</header>
 				<a href="#" class="image fit"><img src="{{post.post_image.url}}" alt="" /></a>
-				<p>user id : {{post.user.id}} post id : {{post.id}}</p>
+				<p class="text-dark fw-bold fs-5 bg-primary-subtle p-3">Post Author : {{post.user.username}} (You)</p>
 				<h5 class="border border-2 border-primary"><a class="text-decoration-none btn btn-primary" href="#">👍 Like</a> {{post.post_like}}_____<a class="btn btn-danger" href="#">👎 Dislike</a> {{post.post_dislike}}</h5>
-				<p> {{post.body}} </p>
+				<p> {{ post.body|truncatewords:100 }} <a class="text-decoration-none text-dark" href="{% url "detailview" post.id %}"><b>see more...</b></a></p>
 				<ul class="actions special">
 					<li><a href="{% url "editpost" post.id %}" class="button bg-success text-white">Edit</a></li>
 					<li><a href="{% url "deletepost" post.id %}" class="button bg-danger text-white">Delete</a></li>
