@@ -6,6 +6,7 @@
   <article class="post featured">
     <header class="major">
       <span class="date">{{object.created_on}}</span>
+      <p class="text-dark fw-bold fs-4 bg-primary-subtle p-3">Post Author : {{object.user.first_name}} {{object.user.last_name}}</p>
       <h2><a href="#">{{object.caption}}</a></h2>
       <img width="500px" src="{{object.post_image.url}}" alt="" />
       <h5>
@@ -14,7 +15,8 @@
           >👎 Dislike</a
         >
         {{object.post_dislike}}
-      </h5>
+      </h5><br>
+      <h5>Description : </h5>
       <p>{{object.body}}</p>
     </header>
   </article>
