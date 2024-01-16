@@ -102,6 +102,7 @@ def addpostview(request):
             # caption = form.cleaned_data['caption']
             # print(caption)
             messages.success(request,'Post Added Successfully')
+            form.instance.user=request.user
             form.save()
             return redirect('userPost',user_id=request.user.id)
         else:

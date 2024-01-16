@@ -7,19 +7,24 @@ from .import models
 class AddPostForm(forms.ModelForm):
     class Meta:
         model = models.PostModel
-        fields = ['user','caption','body','post_image']
+        fields = ['caption','body','post_image']
         
     # def save(self, commit=False):
     #     current_user = super().save(commit=True)
-    #     post = None
+    #     # post = None
         
     #     if commit:
     #         current_user.save()
     #         post = models.PostModel.objects.create(
     #             user = current_user,
     #         )
-    #         models.PostModel.save()
-    #     return post
+    #         post.save()
+    #     return current_user
+    
+    
+    
+    
+    
     
     
 class CommentForm(forms.ModelForm):
