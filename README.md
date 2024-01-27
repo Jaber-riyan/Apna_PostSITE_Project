@@ -1,4 +1,4 @@
---------- About Apna PostSITE ---------
+# --------- About Apna PostSITE ---------
 
 This is a post sharing site. Which is fully responsible . In this, a user can see the posts of other users and can comment on them. 
 You can edit your comment again if you want. You can like the post. You can post yourself. User can view his profile and edit specific data. 
