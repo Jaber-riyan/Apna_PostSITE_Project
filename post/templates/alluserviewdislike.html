@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+
+<div class=" bg-white" style=" width: 85%; margin: auto;">
+    <article class="post featured">
+        <header class="major"><br><br>
+          <p class="fw-bold fs-3">Total Dislike Found : {{alldislike | length}}</p>
+          <hr>
+          {% for i in alldislike %}
+          <h4><a href="{% url "userview" i.user.id %}"># {{i.user.username}}</a></h4>
+          {% endfor %}
+          <br/>
+        </header>
+      </article>
+</div>
+
+{% endblock content %}

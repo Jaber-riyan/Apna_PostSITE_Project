@@ -19,14 +19,14 @@
 				<a href="#" class="image fit"><img src="{{post.post_image.url}}" alt="" /></a>
 				<p class="text-dark fw-bold fs-5 bg-primary-subtle p-3">Post Author : {{post.user.username}} (You)</p>
 				<h5>
-					<br><h5 class="text-decoration-none btn btn-primary">👍 Like</h5>
-					<b>{{post.post_like}}</b>_____<h5 class="text-decoration-none btn btn-danger">👎 Dislike</h5>
-					<b>{{post.post_dislike}}</b>
+					<br><h5 class="text-decoration-none btn btn-primary"><b class="text-white">👍 Like</b></h5>
+					<a class="text-decoration-none text-dark fs-5" href="{% url "allLikeUser" post.id %}">{{post.post_like}}</a>_____<h5 class="text-decoration-none btn btn-danger"><b class="text-white">👎 Dislike</b></h5>
+					<a class="text-decoration-none text-dark fs-5" href="{% url "allDislikeUser" post.id %}">{{post.post_dislike}}</a>
 				</h5>
 				<p> {{ post.body|truncatewords:100 }} <a class="text-decoration-none text-dark" href="{% url "detailview" post.id %}"><b>see more...</b></a></p>
 				<ul class="actions special">
-					<li><a href="{% url "editpost" post.id %}" class="button bg-success text-white">Edit</a></li>
-					<li><a href="{% url "deletepost" post.id %}" class="button bg-danger text-white">Delete</a></li>
+					<li><a href="{% url "editpost" post.id %}" class="button bg-success text-white rounded-4">Edit</a></li>
+					<li><a href="{% url "deletepost" post.id %}" class="button bg-danger text-white rounded-4">Delete</a></li>
 				</ul>
 			</article>
 

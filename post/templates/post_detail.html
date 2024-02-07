@@ -10,9 +10,9 @@
       <h2><a href="#">{{object.caption}}</a></h2>
       <img width="500px" src="{{object.post_image.url}}" alt="" />
       <h5>
-        <br><h5 class="text-decoration-none btn btn-primary">👍 Like</h5>
-        <b>{{object.post_like}}</b>_____<h5 class="text-decoration-none btn btn-danger">👎 Dislike</h5>
-        <b>{{object.post_dislike}}</b>
+        <br><h5 class="text-decoration-none btn btn-primary"><a class="text-decoration-none btn btn-primary" href="{% url 'like' object.id object.user.id %}"><b class="text-white">👍 Like</b></a></h5>
+        <a class="text-decoration-none text-dark fs-5" href="{% url "allLikeUser" object.id %}"><b>{{object.post_like}}</b></a>_____<h5 class="text-decoration-none btn btn-danger"><a class="btn btn-danger" href="{% url "dislike" object.id object.user.id %}"><b class="text-white">👎 Dislike</b></a></h5>
+        <a class="text-decoration-none text-dark fs-5" href="{% url "allDislikeUser" object.id %}"><b>{{object.post_dislike}}</b></a>
       </h5><br>
       <h5>Description : </h5>
       <p class="fs-5">{{object.body}}</p>

@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import AddPostForm, CommentForm, PostUpdateForm
 from django.contrib import messages
 from django.views.generic import DetailView
+from final_exam.forms import UserUpdateForm
 
 
 
@@ -22,7 +23,10 @@ def likeview(request,id,user_id):
         isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
         
         if isExist.like_permi == True:
-            messages.info(request,'You Already Like this post')
+            # messages.info(request,'You Already Like this post')
+            isExist.delete()
+            # print(isExist.post.caption)
+            # print(login_user.username)
             return redirect('homepage')
         
         else: 
@@ -41,33 +45,6 @@ def likeview(request,id,user_id):
         noObject.save()
         return redirect('homepage')
 
-    
-    # post_cl = PostModel.objects.get(id=id)
-    # login_user = User.objects.get(id=request.user.id)
-    # if LikeDislikeModel.objects.filter(post=post_cl,user=login_user).exists():
-        
-        
-    #     isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
-        
-    #     if isExist.like_permi == True:
-    #         messages.info(request,'You Already Like this post')
-    #         return redirect('detailview',pk=post_cl.id)
-        
-    #     else: 
-    #         messages.info(request,'You Already Dislike this post')
-    #         return redirect('detailview',pk=post_cl.id)
-    
-    
-        
-    # else:
-    #     noObject = LikeDislikeModel.objects.create(
-    #         user = login_user,
-    #         post = post_cl,
-    #         like = 1,
-    #         like_permi = True
-    #     )
-    #     noObject.save()
-    #     return redirect('detailview',pk=post_cl.id)
         
 
 
@@ -83,7 +60,8 @@ def dislikeview(request,id,user_id):
         isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
         
         if isExist.dislike_permi == True:
-            messages.info(request,'You Already Dislike this post')
+            # messages.info(request,'You Already Dislike this post')
+            isExist.delete()
             return redirect('homepage')
         
         else: 
@@ -115,6 +93,25 @@ def user_post(request,user_id):
     data = PostModel.objects.filter(user=user)
     # print(user.username)
     return render(request,'user_post.html',{'posts':data})
+
+
+def alluserviewoflike(request, post_id):
+    post_cl = PostModel.objects.get(id = post_id)
+    like = LikeDislikeModel.objects.filter(post=post_cl,like_permi=True)
+    return render(request,'alluserviewlike.html',{'alllike':like})
+
+
+def alluserviewofdislike(request, post_id):
+    post_cl = PostModel.objects.get(id = post_id)
+    dislike = LikeDislikeModel.objects.filter(post=post_cl,dislike_permi=True)
+    return render(request,'alluserviewdislike.html',{'alldislike':dislike})
+
+
+def viewofuserlikedislike(request,user_id):
+    user = User.objects.get(id=user_id)
+    form = UserUpdateForm(instance=user)
+    return render(request, 'viewofuser.html', {'form': form})
+    
 
 
 
