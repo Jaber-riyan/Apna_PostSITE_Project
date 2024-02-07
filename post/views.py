@@ -95,18 +95,19 @@ def user_post(request,user_id):
     return render(request,'user_post.html',{'posts':data})
 
 
+@login_required
 def alluserviewoflike(request, post_id):
     post_cl = PostModel.objects.get(id = post_id)
     like = LikeDislikeModel.objects.filter(post=post_cl,like_permi=True)
     return render(request,'alluserviewlike.html',{'alllike':like})
 
-
+@login_required
 def alluserviewofdislike(request, post_id):
     post_cl = PostModel.objects.get(id = post_id)
     dislike = LikeDislikeModel.objects.filter(post=post_cl,dislike_permi=True)
     return render(request,'alluserviewdislike.html',{'alldislike':dislike})
 
-
+@login_required
 def viewofuserlikedislike(request,user_id):
     user = User.objects.get(id=user_id)
     form = UserUpdateForm(instance=user)
