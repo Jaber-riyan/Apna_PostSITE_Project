@@ -6,7 +6,7 @@
           <p class="fw-bold fs-3">Total Found Like : {{alllike | length}}</p>
           <hr>
           {% for i in alllike %}
-          <h4><a href="{% url "userview" i.user.id %}"># {{i.user.username}}</a></h4>
+          <h4><a href="{% url "userview" i.user.id %}">👍 {{i.user.username}}</a></h4>
           {% endfor %}
           <br/>
         </header>

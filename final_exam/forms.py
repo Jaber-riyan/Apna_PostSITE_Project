@@ -14,7 +14,7 @@ class UserRegistrationForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email','phone_number','location',]
+        fields = ['username','first_name','last_name','email','phone_number','location']
         model.is_active = False
         
     def save(self,commit=True):

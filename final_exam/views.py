@@ -58,7 +58,7 @@ def signupview(request):
                 print('token : ',token)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
                 print('uid : ',uid)
-                confirm_link = f"https://apna-postsite.onrender.com/active/{uid}/{token}/"
+                confirm_link = f"http://127.0.0.1:8000/active/{uid}/{token}/"
                 email_subject = "Confirm Email"
                 email_body = render_to_string('confirm_mail.html',{'confirm_link':confirm_link})
                 
@@ -68,7 +68,7 @@ def signupview(request):
                 
                 
                 messages.success(request,'Account Create Successfully, Check Your Account Activate Mail')
-                return redirect('homepage')
+                return redirect('login')
         else:
             form = UserRegistrationForm()
         return render(request,'sign_up.html',{'form':form})
@@ -100,7 +100,7 @@ def activate(request,uid64,token):
 class UserLoginView(LoginView):
     template_name = 'log_in.html'
     def get_success_url(self):
-        # return reverse_lazy('profile')
+        # return reverse_lazy('profile',user=self.request.user.id)
         return reverse_lazy('homepage')
     
     

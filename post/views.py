@@ -21,7 +21,6 @@ def likeview(request,id,user_id):
         
         
         isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
-        
         if isExist.like_permi == True:
             # messages.info(request,'You Already Like this post')
             isExist.delete()
@@ -30,8 +29,21 @@ def likeview(request,id,user_id):
             return redirect('homepage')
         
         else: 
-            messages.info(request,'You Already Dislike this post')
+            isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
+            if isExist.dislike_permi == True:
+                print(isExist.post.caption)
+                isExist.delete()
+                noObject = LikeDislikeModel.objects.create(
+                    user = login_user,
+                    post = post_cl,
+                    like = 1,
+                    like_permi = True
+                )
+                noObject.save()
+                
             return redirect('homepage')
+            # messages.info(request,'You Already Dislike this post')
+            # return redirect('homepage')
     
     
         
@@ -65,7 +77,18 @@ def dislikeview(request,id,user_id):
             return redirect('homepage')
         
         else: 
-            messages.info(request,'You Already Like this post')
+            isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
+            if isExist.like_permi == True:
+                print(isExist.post.caption)
+                isExist.delete()
+                noObject = LikeDislikeModel.objects.create(
+                    user = login_user,
+                    post = post_cl,
+                    dislike = 1,
+                    dislike_permi = True
+                )
+                noObject.save()
+                
             return redirect('homepage')
     
     
