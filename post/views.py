@@ -31,7 +31,7 @@ def likeview(request,id,user_id):
         else: 
             isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
             if isExist.dislike_permi == True:
-                print(isExist.post.caption)
+                # print(isExist.post.caption)
                 isExist.delete()
                 noObject = LikeDislikeModel.objects.create(
                     user = login_user,
@@ -79,7 +79,7 @@ def dislikeview(request,id,user_id):
         else: 
             isExist = LikeDislikeModel.objects.get(post=post_cl,user=login_user)
             if isExist.like_permi == True:
-                print(isExist.post.caption)
+                # print(isExist.post.caption)
                 isExist.delete()
                 noObject = LikeDislikeModel.objects.create(
                     user = login_user,
