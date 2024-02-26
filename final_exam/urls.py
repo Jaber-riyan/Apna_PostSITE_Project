@@ -19,6 +19,7 @@ from django.urls import path,include
 from .import views
 from django.conf import settings
 from django.conf.urls.static import static
+admin.site.site_header="Apna Post Site Admin Panel"
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -25,6 +25,7 @@
     <h6 class="fw-bold m-2">Total Comments : {{comments | length}}</h6>
     {% for comment in comments%}
     <div class="card-body border m-3">
+      {% comment %} <b><a href="">{{comment.name}}</a></b> {% endcomment %}
       <b>{{comment.name}}</b>
       <small>, {{comment.created_on}}</small>
       <p>....{{comment.body}}</p>
